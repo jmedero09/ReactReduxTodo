@@ -51,7 +51,12 @@ export var todosReducer = (state = [], action)=>{
 					return todo;
 				}
 			});
-			default:
-				return state;
+		case 'ADD_TODOS':
+			return[
+				...state,
+				...action.todos
+			];
+		default:
+			return state;
 	}
 }
