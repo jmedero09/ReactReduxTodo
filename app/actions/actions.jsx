@@ -22,6 +22,7 @@ export var startAddTodo=(text)=>{
 			createdAt: moment().unix(),
 			completedAt: null				
 		}
+		//Todos refrences the todos passed in add todos
 		var todoRef = firebaseRef.child('todos').push(todo);
 
 		return todoRef.then(()=>{
@@ -44,9 +45,37 @@ export var toggleShowCompleted = ()=>{
 	}
 }
 
-export var toggleTodo = (id)=>{
+export var updateTodo = (id,updates)=>{
 	return {
-		type:'TOGGLE_TODO',
-		id:id
+		type:'UPDATE_TODO',
+		id:id,
+		updates:updates
 	}
 }
+
+export var startToggleTodo = (id,completed)=>{
+	return (dispatch,getState)=>{
+		var todoRef = firebaseRef.child('todos/'+id);
+		var updates = {
+			completed:completed,
+			completedAt:completed ? moment().unix(): null
+		}
+		return todoRef.update(updates).then(()=>{
+			dispatch(updateTodo(id,updates));
+		})
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
