@@ -1,15 +1,15 @@
 import firebase from 'firebase';
- 
-try{
- var config = {
-    apiKey: "AIzaSyCd4pVrrdY6AW200t9ZefAE__kSD1HNJJk",
-    authDomain: "jesus-todo-app.firebaseapp.com",
-    databaseURL: "https://jesus-todo-app.firebaseio.com",
-    storageBucket: "jesus-todo-app.appspot.com",
-    messagingSenderId: "385806768698"
+
+try {
+  var config = {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
   };
+
   firebase.initializeApp(config);
-}catch(e){
+} catch (e) {
 
 }
 
