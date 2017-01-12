@@ -8,6 +8,8 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 var TodoAPI = require('TodoAPI');
 
+import {Login} from 'Login';
+
 store.dispatch(actions.startAddTodos());
 
 // Load foundation
@@ -17,8 +19,14 @@ $(document).foundation();
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
+
   <Provider store={store}>
-  	<TodoApp/>
+  	<Router history={hashHistory}>
+  		<Route path="/">
+  			<Route path="todos" component={TodoApp}/>
+  			<IndexRoute component={Login}/>
+  		</Route>
+  	</Router>
   </Provider>,
   document.getElementById('app')
 );

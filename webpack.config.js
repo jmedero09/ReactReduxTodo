@@ -9,7 +9,6 @@ try {
 } catch (e) {
 
 }
-
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
